@@ -23,17 +23,12 @@ namespace Survivor
 
         static Vector2 spawnEnemy(GameData gameData, Balance balance)
         {
-            Vector2 direction = Vector2.zero;
-            float angle;
+            Vector2 direction = gameData.PlayerDirection;
+            float angle = UnityEngine.Random.value * 180.0f - 90.0f;
             if (direction.magnitude == 0.0f)
             {
                 direction = new Vector2(0.0f, 1.0f);
                 angle = UnityEngine.Random.value * 360.0f;
-            }
-            else
-            {
-                direction = gameData.PlayerDirection;
-                angle = UnityEngine.Random.value * 180.0f - 90.0f;
             }
             direction = RotateVector(direction, angle);
             return direction.normalized * balance.SpawnRadius;
