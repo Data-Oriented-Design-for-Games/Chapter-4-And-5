@@ -18,10 +18,10 @@ namespace Survivor
             gameData.PlayerDirection = Vector2.zero;
 
             for (int i = 0; i < balance.NumEnemies; i++)
-                gameData.EnemyPosition[i] = spawnEnemy(gameData, balance);
+                gameData.EnemyPosition[i] = getEnemySpawnPosition(gameData, balance);
         }
 
-        static Vector2 spawnEnemy(GameData gameData, Balance balance)
+        static Vector2 getEnemySpawnPosition(GameData gameData, Balance balance)
         {
             Vector2 direction = gameData.PlayerDirection;
             float angle = UnityEngine.Random.value * 180.0f - 90.0f;
@@ -76,7 +76,7 @@ namespace Survivor
             float distanceSqr = balance.SpawnRadius * balance.SpawnRadius * 1.1f;
             for (int i = 0; i < balance.NumEnemies; i++)
                 if (gameData.EnemyPosition[i].sqrMagnitude > distanceSqr)
-                    gameData.EnemyPosition[i] = spawnEnemy(gameData, balance);
+                    gameData.EnemyPosition[i] = getEnemySpawnPosition(gameData, balance);
         }
 
         static void doEemyToEnemyCollision(GameData gameData, Balance balance)
